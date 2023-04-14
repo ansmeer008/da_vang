@@ -1,4 +1,4 @@
-[
+const data = [
   {
     id: 0,
     title: "Sinrim station 30 meters away",
@@ -42,3 +42,5 @@
     price: 370000,
   },
 ];
+
+export default data;

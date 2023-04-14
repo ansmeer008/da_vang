@@ -11,36 +11,23 @@
     <a v-for="(menu, i) in menus" :key="i">{{ menu }}</a>
   </div>
 
-  <div>
-    <img src="./assets/room0.jpg" class="room-img" />
-    <h4 v-on:click="isOpen = true">{{ products[0] }}</h4>
-    <p>50 만원</p>
-    <button v-on:click="increase(0)">허위매물신고</button>
-    <span>신고 수: {{ reportCount[0] }}</span>
-  </div>
-  <div>
-    <img src="./assets/room1.jpg" class="room-img" />
-    <h4>{{ products[1] }}</h4>
-    <p>가격은 아무거나</p>
-    <button v-on:click="increase(1)">허위매물신고</button>
-    <span>신고 수: {{ reportCount[1] }}</span>
-  </div>
-  <div>
-    <img src="./assets/room2.jpg" class="room-img" />
-    <h4>{{ products[2] }}</h4>
-    <p>가격은 아무거나</p>
-    <button v-on:click="increase(2)">허위매물신고</button>
-    <span>신고 수: {{ reportCount[2] }}</span>
+  <div v-for="room in products" :key="room.id">
+    <!-- html 태그 안의 속성 데이터 바인딩은 ':' 붙여줘야 함 -->
+    <img :src="room.image" class="room-img" />
+    <h4 v-on:click="isOpen = true">{{ room.title }}</h4>
+    <p>{{ room.price }}</p>
   </div>
 </template>
 
 <script>
+import data from "./data";
+
 export default {
   name: "App",
   data() {
     return {
       reportCount: [0, 0, 0],
-      products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
+      products: data,
       menus: ["Home", "Products", "About"],
       isOpen: false,
     };
