@@ -1,17 +1,22 @@
 <template>
-  <DetailModal />
+  <DetailModal
+    v-bind:products="products"
+    v-bind:clickedProduct="clickedProduct"
+    v-bind:isOpen="isOpen"
+    v-on:closeModal="isOpen = false"
+  />
 
   <div class="menu">
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
 
-  <Discount
-    v-bind:products="products"
-    v-bind:clickedProduct="clickedProduct"
-    v-bind:isOpen="isOpen"
-  />
+  <Discount />
 
   <ItemCard
+    v-on:openModal="
+      isOpen = true;
+      clickedProduct = $event;
+    "
     v-bind:product="products[i]"
     v-for="(product, i) in products"
     :key="product"

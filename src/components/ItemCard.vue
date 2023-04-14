@@ -2,7 +2,7 @@
   <div>
     <!-- html 태그 안의 속성 데이터 바인딩은 ':' 붙여줘야 함 -->
     <img :src="product.image" class="room-img" />
-    <h4>
+    <h4 v-on:click="$emit('openModal', product.id)">
       {{ product.title }}
     </h4>
     <p>{{ product.price }}</p>
