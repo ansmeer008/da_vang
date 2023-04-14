@@ -1,19 +1,15 @@
 <template>
-  <div class="backdrop" v-if="isOpen">
-    <div class="modal-box">
-      <h4>{{ products[clickedProduct].title }}</h4>
-      <img class="room-img" :src="products[clickedProduct].image" />
-      <p>{{ products[clickedProduct].price }}</p>
-      <p>
-        {{ products[clickedProduct].content }}
-      </p>
-      <button v-on:click="isOpen = false">닫을거임</button>
-    </div>
-  </div>
+  <DetailModal />
 
   <div class="menu">
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
+
+  <Discount
+    v-bind:products="products"
+    v-bind:clickedProduct="clickedProduct"
+    v-bind:isOpen="isOpen"
+  />
 
   <div v-for="(room, i) in products" :key="room.id">
     <!-- html 태그 안의 속성 데이터 바인딩은 ':' 붙여줘야 함 -->
@@ -32,6 +28,8 @@
 
 <script>
 import data from "./data";
+import Discount from "./components/Discount.vue";
+import DetailModal from "./components/DetailModal.vue";
 
 export default {
   name: "App",
@@ -44,7 +42,10 @@ export default {
       clickedProduct: 0,
     };
   },
-  components: {},
+  components: {
+    Discount: Discount,
+    DetailModal: DetailModal,
+  },
   methods: {
     increase(i) {
       this.reportCount[i]++;
