@@ -8,6 +8,8 @@
       <input v-on:input="month = $event.target.value" />
       <!-- 위 코드를 아래와 같이 축약할 수도 있다. -->
       <!-- <input v-model="month"> -->
+      <!-- v-model로 input에 들어온 데이터를 저장하면 모두 문자열로 저장되므로, 숫자로 저장하고 싶을 때는 
+      v-model.number="month"와 같이 작성해줄 수 있다. -->
       <p>
         {{ month }} 개월 선택함 : {{ products[clickedProduct].price * month }}
       </p>
