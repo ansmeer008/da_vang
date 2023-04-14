@@ -14,6 +14,11 @@
 
   <Discount />
 
+  <button @click="priceSort">낮은가격순정렬</button>
+  <button @click="higherPriceSort">높은가격순정렬</button>
+  <button @click="letterSort">알파벳순정렬</button>
+  <button @click="sortBack">되돌리기</button>
+
   <ItemCard
     v-on:openModal="
       isOpen = true;
@@ -35,6 +40,8 @@ export default {
   name: "App",
   data() {
     return {
+      // showDiscount: true,
+      originalProducts: [...data],
       reportCount: [0, 0, 0],
       products: data,
       menus: ["Home", "Products", "About"],
@@ -47,9 +54,34 @@ export default {
     DetailModal: DetailModal,
     ItemCard: ItemCard,
   },
+  //마운트 되자마자 실행하는 라이프사이클 훅
+  // mounted() {
+  //   setTimeout(() => {
+  //     //arrow function 사용해주는 게 this를 더 잘 활용할 수 있음
+  //     this.showDiscount = false;
+  //   }, 2000);
+  // },
   methods: {
     increase(i) {
       this.reportCount[i]++;
+    },
+    priceSort() {
+      this.products.sort((a, b) => {
+        return a.price - b.price;
+      });
+    },
+    higherPriceSort() {
+      this.products.sort((a, b) => {
+        return b.price - a.price;
+      });
+    },
+    letterSort() {
+      this.products.sort((a, b) => {
+        return a.title - b.title;
+      });
+    },
+    sortBack() {
+      this.products = [...this.originalProducts];
     },
   },
 };
