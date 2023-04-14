@@ -24,4 +24,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.backdrop {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 20px;
+}
+.modal-box {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+</style>

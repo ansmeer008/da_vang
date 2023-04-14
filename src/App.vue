@@ -11,25 +11,18 @@
     v-bind:isOpen="isOpen"
   />
 
-  <div v-for="(room, i) in products" :key="room.id">
-    <!-- html 태그 안의 속성 데이터 바인딩은 ':' 붙여줘야 함 -->
-    <img :src="room.image" class="room-img" />
-    <h4
-      v-on:click="
-        isOpen = true;
-        clickedProduct = i;
-      "
-    >
-      {{ room.title }}
-    </h4>
-    <p>{{ room.price }}</p>
-  </div>
+  <ItemCard
+    v-bind:product="products[i]"
+    v-for="(product, i) in products"
+    :key="product"
+  />
 </template>
 
 <script>
 import data from "./data";
 import Discount from "./components/Discount.vue";
 import DetailModal from "./components/DetailModal.vue";
+import ItemCard from "./components/ItemCard.vue";
 
 export default {
   name: "App",
@@ -45,6 +38,7 @@ export default {
   components: {
     Discount: Discount,
     DetailModal: DetailModal,
+    ItemCard: ItemCard,
   },
   methods: {
     increase(i) {
@@ -83,18 +77,5 @@ div {
 .room-img {
   width: 100%;
   margin-top: 40px;
-}
-.backdrop {
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  padding: 20px;
-}
-.modal-box {
-  width: 100%;
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
 }
 </style>
