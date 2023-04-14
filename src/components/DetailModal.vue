@@ -3,12 +3,16 @@
     <div class="modal-box">
       <h4>{{ products[clickedProduct].title }}</h4>
       <img class="room-img" :src="products[clickedProduct].image" />
-      <p>{{ products[clickedProduct].price }}</p>
+      <p>{{ products[clickedProduct].content }}</p>
+      <!-- input 이벤트는 input에 뭐 입력할 때마다 감지해주는 이벤트 -->
+      <input v-on:input="month = $event.target.value" />
+      <!-- 위 코드를 아래와 같이 축약할 수도 있다. -->
+      <!-- <input v-model="month"> -->
       <p>
-        {{ products[clickedProduct].content }}
+        {{ month }} 개월 선택함 : {{ products[clickedProduct].price * month }}
       </p>
       <!-- props는 readOnly라 받아온 props를 변화시키면 안 된다 -->
-      <!-- <button v-on:click="isOpen = false">닫을거임</button> -->
+      <button v-on:click="$emit('closeModal')">닫을거임</button>
     </div>
   </div>
 </template>
@@ -20,6 +24,11 @@ export default {
     products: Array,
     clickedProduct: Number,
     isOpen: Boolean,
+  },
+  data() {
+    return {
+      month: 1,
+    };
   },
 };
 </script>
