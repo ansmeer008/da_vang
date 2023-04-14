@@ -1,10 +1,12 @@
 <template>
-  <DetailModal
-    v-bind:products="products"
-    v-bind:clickedProduct="clickedProduct"
-    v-bind:isOpen="isOpen"
-    v-on:closeModal="isOpen = false"
-  />
+  <transition name="fade">
+    <DetailModal
+      v-bind:products="products"
+      v-bind:clickedProduct="clickedProduct"
+      v-bind:isOpen="isOpen"
+      v-on:closeModal="isOpen = false"
+    />
+  </transition>
 
   <div class="menu">
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
@@ -82,5 +84,14 @@ div {
 .room-img {
   width: 100%;
   margin-top: 40px;
+}
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: all 1s;
+}
+.fade-enter-to {
+  opacity: 1;
 }
 </style>
