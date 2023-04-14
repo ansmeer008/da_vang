@@ -1,20 +1,31 @@
 <template>
   <div class="backdrop" v-if="isOpen">
     <div class="modal-box">
-      <h4>상세페이지임</h4>
-      <p>상세페이지 내용임</p>
+      <h4>{{ products[clickedProduct].title }}</h4>
+      <img class="room-img" :src="products[clickedProduct].image" />
+      <p>{{ products[clickedProduct].price }}</p>
+      <p>
+        {{ products[clickedProduct].content }}
+      </p>
       <button v-on:click="isOpen = false">닫을거임</button>
     </div>
   </div>
 
   <div class="menu">
-    <a v-for="(menu, i) in menus" :key="i">{{ menu }}</a>
+    <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
 
-  <div v-for="room in products" :key="room.id">
+  <div v-for="(room, i) in products" :key="room.id">
     <!-- html 태그 안의 속성 데이터 바인딩은 ':' 붙여줘야 함 -->
     <img :src="room.image" class="room-img" />
-    <h4 v-on:click="isOpen = true">{{ room.title }}</h4>
+    <h4
+      v-on:click="
+        isOpen = true;
+        clickedProduct = i;
+      "
+    >
+      {{ room.title }}
+    </h4>
     <p>{{ room.price }}</p>
   </div>
 </template>
@@ -30,6 +41,7 @@ export default {
       products: data,
       menus: ["Home", "Products", "About"],
       isOpen: false,
+      clickedProduct: 0,
     };
   },
   components: {},
