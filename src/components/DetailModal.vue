@@ -5,9 +5,9 @@
       <img class="room-img" :src="products[clickedProduct].image" />
       <p>{{ products[clickedProduct].content }}</p>
       <!-- input 이벤트는 input에 뭐 입력할 때마다 감지해주는 이벤트 -->
-      <input v-on:input="month = $event.target.value" />
+      <!-- <input v-on:input="month = $event.target.value" /> -->
       <!-- 위 코드를 아래와 같이 축약할 수도 있다. -->
-      <!-- <input v-model="month"> -->
+      <input v-model.number="month" />
       <!-- v-model로 input에 들어온 데이터를 저장하면 모두 문자열로 저장되므로, 숫자로 저장하고 싶을 때는 
       v-model.number="month"와 같이 작성해줄 수 있다. -->
       <p>
@@ -31,6 +31,16 @@ export default {
     return {
       month: 1,
     };
+  },
+  watch: {
+    month(a) {
+      if (a >= 13) {
+        alert("12까지만 입력할 수 있어욥!");
+      }
+      if (typeof a === "string") {
+        alert("숫자만 입력해주세요!");
+      }
+    },
   },
 };
 </script>
