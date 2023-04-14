@@ -32,13 +32,19 @@ export default {
       month: 1,
     };
   },
+  updated() {
+    if (this.month === 2) {
+      alert("2개월은 너무 적음.. 안팝니다");
+    }
+  },
   watch: {
     month(a) {
       if (a >= 13) {
         alert("12까지만 입력할 수 있어욥!");
       }
-      if (typeof a === "string") {
+      if (isNaN(a)) {
         alert("숫자만 입력해주세요!");
+        this.month = 1;
       }
     },
   },
